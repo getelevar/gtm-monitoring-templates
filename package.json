@@ -1,0 +1,10 @@
+{
+  "name": "gtm-monitoring-templates",
+  "private": true,
+  "dependencies": {
+    "logToConsole": "file:local_modules/logToConsole",
+    "createQueue": "file:local_modules/createQueue",
+    "copyFromDataLayer": "file:local_modules/copyFromDataLayer",
+    "getType": "file:local_modules/getType"
+  }
+}
