@@ -25,7 +25,7 @@ global.DUMMY_DATALAYER = {
 };
 
 global.data = {
-  dataLayerKey: "test_object.value",
+  dataLayerKey: "crazy.item.0.ok",
   required: true,
   valueType: "value",
   validationTable: [

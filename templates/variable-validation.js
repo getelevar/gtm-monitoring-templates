@@ -1,16 +1,13 @@
 // Required Modules
 const log = require("logToConsole");
 const getType = require("getType");
-const readFromDataLayer = require("copyFromDataLayer");
+const copyFromDataLayer = require("copyFromDataLayer");
 const createQueue = require("createQueue");
 
-/* ------------------- CUSTOM SETUP --------------------- */
-
-const deepValue = (obj, path) => path.split(".").reduce((a, v) => a[v], obj);
-
-/* ------------------------------------------------------ */
-
 const addValidationError = createQueue("elevar_gtm_errors");
+
+// Object path traversal function
+const deepValue = (obj, path) => path.split(".").reduce((a, v) => a[v], obj);
 
 /**
 Function to add new error to validation_errors
@@ -21,6 +18,7 @@ error_id - id that can be used to identify errors
 */
 const addError = (eventId, dataLayerKey) => (value, condition, expected) => {
   log({
+    eventId: eventId,
     dataLayerKey: dataLayerKey,
     error: {
       value: value,
@@ -116,7 +114,7 @@ const isValid = (value, condition, expectedValue) => {
       return true;
 
     default:
-      return false;
+      return true;
   }
 };
 
@@ -129,25 +127,6 @@ const validateValue = (value, table) => {
     }
   }
 };
-
-const getDataLayerValue = key => {
-  if (key.indexOf(".0") !== -1) {
-    const split = key.split(".0");
-
-    const initialValue = readFromDataLayer(split[0]);
-    if (!initialValue) return initialValue;
-
-    const value = split.slice(1).reduce((a, v) => {
-      if (getType(a) !== "array") return undefined;
-      if (!v) return a[0];
-      return deepValue(a[0], v.slice(1));
-    }, initialValue);
-    return value;
-  }
-  return readFromDataLayer(key);
-};
-
-log(getDataLayerValue("crazy.item.0.wow.0.no.0"));
 
 // value type === object
 // for each row in table look for key and validate
@@ -173,9 +152,26 @@ const validateArray = (arr, table) => {
   }
 };
 
+// Custom dataLayer get function to fix permission error
+const getDataLayerValue = key => {
+  if (key.indexOf(".0") !== -1) {
+    const split = key.split(".0");
+    const initialValue = copyFromDataLayer(split[0]);
+    if (!initialValue) return initialValue;
+
+    return split.slice(1).reduce((a, v) => {
+      if (getType(a) !== "array") return undefined;
+      if (!v) return a[0];
+
+      return deepValue(a[0], v.slice(1));
+    }, initialValue);
+  }
+  return copyFromDataLayer(key);
+};
+
 const validationTable = data.validationTable;
 const valueType = data.valueType;
-const dataLayerValue = readFromDataLayer(data.dataLayerKey);
+const dataLayerValue = getDataLayerValue(data.dataLayerKey);
 
 // Don't validate if item is undefined
 // But add error if item is required
