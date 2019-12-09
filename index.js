@@ -29,7 +29,7 @@ global.dataLayer = [
   },
 ];
 
-data = {
+const variableData = {
   dataLayerKey: "crazy",
   required: true,
   valueType: "value",
@@ -40,9 +40,6 @@ data = {
       conditionValue: "array",
     },
   ],
-  gtmOnSuccess: () => {
-    eventCallbacks.forEach(callback => callback("container-id-1"));
-  },
 };
 
 const vm = require("vm");
@@ -52,15 +49,21 @@ const assert = require("assert");
 const validation = fs.readFileSync("./templates/variable-validation.js");
 const testIsValid = fs.readFileSync("./template-tests/isValid.js");
 
-const sandbox = vm.createContext({ require, data, assert });
+const sandbox = vm.createContext({ require, data: variableData, assert });
 
 vm.runInContext(validation, sandbox);
 vm.runInContext(testIsValid, sandbox);
 
 /* ---------------------------------------- */
 
+const monitoringData = {
+  gtmOnSuccess: () => {
+    eventCallbacks.forEach(callback => callback("container-id-1"));
+  },
+};
+
 const monitor = fs.readFileSync("./templates/validation-error-sending.js");
 
-const sandbox2 = vm.createContext({ require, data, assert });
+const sandbox2 = vm.createContext({ require, data: monitoringData, assert });
 
 vm.runInContext(monitor, sandbox2);
