@@ -51,7 +51,7 @@ addEventCallback(function(containerId, eventData) {
     }
 
     let url =
-      "https://product-registration.digitalsubstrate.com?ctid=" +
+      "https://monitoring.getelevar.com/" +
       containerId +
       "&page_url=" +
       encodeUriComponent(pageUrl) +

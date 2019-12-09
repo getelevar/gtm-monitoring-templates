@@ -2,7 +2,7 @@
 
 > Monitoring templates used in GTM to report errors happening in variables/tags
 
-## 🚀Quick start
+## 🚀 Quick start
 
 ```
 # install dependencies

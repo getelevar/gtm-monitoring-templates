@@ -2,19 +2,35 @@
 # yarn lockfile v1
 
 
+"addEventCallback@file:local_modules/addEventCallback":
+  version "1.0.0"
+
 "copyFromDataLayer@file:local_modules/copyFromDataLayer":
+  version "1.0.0"
+
+"copyFromWindow@file:local_modules/copyFromWindow":
   version "1.0.0"
 
 "createQueue@file:local_modules/createQueue":
   version "1.0.0"
 
+"encodeUriComponent@file:local_modules/encodeUriComponent":
+  version "1.0.0"
+
+"getCookieValues@file:local_modules/getCookieValues":
+  version "1.0.0"
+
 "getType@file:local_modules/getType":
+  version "1.0.0"
+
+"getUrl@file:local_modules/getUrl":
   version "1.0.0"
 
 "logToConsole@file:local_modules/logToConsole":
   version "1.0.0"
 
-vm2@^3.8.4:
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.8.4.tgz#882be9135467942d84d1af80b6e6549b57c69041"
-  integrity sha512-5HThl+RBO/pwE9SF0kM4nLrpq5vXHBNk4BMX27xztvl0j1RsZ4/PMVJAu9rM9yfOtTo5KroL7XNX3031ExleSw==
+"sendPixel@file:local_modules/sendPixel":
+  version "1.0.0"
+
+"setInWindow@file:local_modules/setInWindow":
+  version "1.0.0"

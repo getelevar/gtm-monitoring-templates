@@ -27,3 +27,4 @@ test([], "isType", "object", false);
 
 test("hellojello", "contains", "loje", true);
 test("hello jello", "contains", "loje", false);
+test("", "contains", "loje", false);

@@ -5,7 +5,13 @@
     "copyFromDataLayer": "file:local_modules/copyFromDataLayer",
     "createQueue": "file:local_modules/createQueue",
     "getType": "file:local_modules/getType",
-    "logToConsole": "file:local_modules/logToConsole",
-    "vm2": "^3.8.4"
+    "getUrl": "file:local_modules/getUrl",
+    "getCookieValues": "file:local_modules/getCookieValues",
+    "addEventCallback": "file:local_modules/addEventCallback",
+    "encodeUriComponent": "file:local_modules/encodeUriComponent",
+    "copyFromWindow": "file:local_modules/copyFromWindow",
+    "setInWindow": "file:local_modules/setInWindow",
+    "sendPixel": "file:local_modules/sendPixel",
+    "logToConsole": "file:local_modules/logToConsole"
   }
 }
