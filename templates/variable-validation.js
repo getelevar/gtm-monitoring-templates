@@ -6,16 +6,18 @@ const createQueue = require("createQueue");
 
 const addValidationError = createQueue("elevar_gtm_errors");
 
-// Object path traversal function
+/*
+  Object path traversal function
+
+  When given a object and a path such as 'item.child.value',
+  traverses through the object and returns the value at the end
+  of the path.
+*/
 const deepValue = (obj, path) => path.split(".").reduce((a, v) => a[v], obj);
 
 /**
-Function to add new error to validation_errors
-
-@params
-message - error message
-error_id - id that can be used to identify errors
-*/
+ * Function to add new error to validation_errors
+ */
 const addError = (eventId, dataLayerKey) => (value, condition, expected) => {
   log({
     eventId: eventId,
@@ -41,6 +43,7 @@ const addError = (eventId, dataLayerKey) => (value, condition, expected) => {
 
 const newError = addError(data.gtmEventId, data.dataLayerKey);
 
+/* Validate a single value */
 const isValid = (value, condition, expectedValue) => {
   switch (condition) {
     case "equals":
@@ -205,4 +208,4 @@ if (typeof dataLayerValue === "undefined") {
 }
 
 log(dataLayerValue);
-return dataLayerValue;
+// return dataLayerValue;

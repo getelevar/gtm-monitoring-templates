@@ -1,3 +1,4 @@
+global.elevar_gtm_errors = [];
 global.DUMMY_DATALAYER = {
   test_string: "random",
   test_number: 90,
@@ -24,8 +25,8 @@ global.DUMMY_DATALAYER = {
   },
 };
 
-global.data = {
-  dataLayerKey: "crazy.item.0.ok",
+data = {
+  dataLayerKey: "crazy",
   required: true,
   valueType: "value",
   validationTable: [
@@ -37,4 +38,13 @@ global.data = {
   ],
 };
 
-require("./templates/variable-validation");
+const vm = require("vm");
+const fs = require("fs");
+
+const content = fs.readFileSync("./templates/variable-validation.js");
+const test = fs.readFileSync("./template-tests/isValid.js");
+
+const sandbox = vm.createContext({ require, data, assert });
+
+vm.runInContext(content, sandbox);
+vm.runInContext(test, sandbox);

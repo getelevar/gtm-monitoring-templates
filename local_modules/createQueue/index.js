@@ -1,4 +1,3 @@
-const errors = [];
-const createQueue = key => value => errors.push(value);
+const createQueue = obj => value => global[obj].push(value);
 
 module.exports = createQueue;

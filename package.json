@@ -2,9 +2,10 @@
   "name": "gtm-monitoring-templates",
   "private": true,
   "dependencies": {
-    "logToConsole": "file:local_modules/logToConsole",
-    "createQueue": "file:local_modules/createQueue",
     "copyFromDataLayer": "file:local_modules/copyFromDataLayer",
-    "getType": "file:local_modules/getType"
+    "createQueue": "file:local_modules/createQueue",
+    "getType": "file:local_modules/getType",
+    "logToConsole": "file:local_modules/logToConsole",
+    "vm2": "^3.8.4"
   }
 }
