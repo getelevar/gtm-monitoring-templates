@@ -1,8 +1,4 @@
-const log = require("logToConsole");
-const getUrl = require("getUrl");
-const getCookieValues = require("getCookieValues");
 const addEventCallback = require("addEventCallback");
-const encodeUriComponent = require("encodeUriComponent");
 const copyFromWindow = require("copyFromWindow");
 const setInWindow = require("setInWindow");
 const sendPixel = require("sendPixel");
@@ -21,7 +17,6 @@ const getEventName = (eventId, dataLayer) => {
 // Fires after all tags for the trigger have completed
 addEventCallback(function(containerId, eventData) {
   const DATA_LAYER = copyFromWindow("dataLayer");
-  const pageUrl = getUrl("path");
   const errors = copyFromWindow(VALIDATION_ERRORS);
 
   // This removes the validation errors from window after they have been sent
@@ -43,27 +38,15 @@ addEventCallback(function(containerId, eventData) {
       return prev;
     }, {});
 
-    const events = [];
-    const messages = [];
     for (let key in errorsByCount) {
-      events.push(errorsByCount[key].eventName);
-      messages.push(errorsByCount[key].message);
-    }
+      let url =
+        "https://monitoring.getelevar.com/track.gif?ctid=" +
+        containerId +
+        "&event_name=" +
+        errorsByCount[key].eventName +
+        "&error=" +
+        errorsByCount[key].message;
 
-    let url =
-      "https://monitoring.getelevar.com/" +
-      containerId +
-      "&page_url=" +
-      encodeUriComponent(pageUrl) +
-      "&event_name=" +
-      events.join(",") +
-      "&errors=" +
-      encodeUriComponent(messages.join(","));
-
-    log("url =", url);
-
-    // and we are not in debug/preview mode
-    if (getCookieValues("gtm_debug") === undefined) {
       sendPixel(url);
     }
   }
