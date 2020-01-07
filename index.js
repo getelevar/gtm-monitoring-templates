@@ -1,4 +1,16 @@
-global.elevar_gtm_errors = [];
+global.elevar_gtm_errors = [
+  {
+    eventId: 1,
+    dataLayerKey: "default",
+    error: {
+      message: "error message",
+      value: "value",
+      condition: "condition",
+      conditionValue: "expected",
+    },
+  },
+];
+
 global.cookies = {};
 global.eventCallbacks = [];
 global.dataLayer = [

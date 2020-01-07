@@ -24,31 +24,19 @@ addEventCallback(function(containerId, eventData) {
 
   // Send Pixel if there are errors
   if (errors.length > 0) {
-    const errorsByCount = errors.reduce((prev, curr) => {
-      if (typeof prev[curr.eventId] === "undefined") {
-        prev[curr.eventId] = {
-          count: 1,
-          eventName: getEventName(curr.eventId, DATA_LAYER),
-          message: curr.error.message,
-        };
-      } else {
-        prev[curr.eventId].count += 1;
-      }
-
-      return prev;
-    }, {});
-
-    for (let key in errorsByCount) {
+    errors.forEach((errorEvent, index) => {
       let url =
         "https://monitoring.getelevar.com/track.gif?ctid=" +
         containerId +
+        "&idx=" +
+        index +
         "&event_name=" +
-        errorsByCount[key].eventName +
+        getEventName(errorEvent.eventId, DATA_LAYER) +
         "&error=" +
-        errorsByCount[key].message;
+        errorEvent.error.message;
 
       sendPixel(url);
-    }
+    });
   }
 });
 
