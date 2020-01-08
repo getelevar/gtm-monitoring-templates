@@ -2,6 +2,11 @@ const addEventCallback = require("addEventCallback");
 const copyFromWindow = require("copyFromWindow");
 const setInWindow = require("setInWindow");
 const sendPixel = require("sendPixel");
+/**
+ * This is required even though its not used here
+ * because the tests fail without it.
+ */
+const log = require("logToConsole");
 
 const VALIDATION_ERRORS = "elevar_gtm_errors";
 
@@ -16,14 +21,16 @@ const getEventName = (eventId, dataLayer) => {
 
 // Fires after all tags for the trigger have completed
 addEventCallback(function(containerId, eventData) {
-  const DATA_LAYER = copyFromWindow("dataLayer");
+  const DATA_LAYER = copyFromWindow(
+    data.dataLayerName ? data.dataLayerName : "dataLayer",
+  );
   const errors = copyFromWindow(VALIDATION_ERRORS);
 
   // This removes the validation errors from window after they have been sent
   setInWindow(VALIDATION_ERRORS, [], true);
 
   // Send Pixel if there are errors
-  if (errors.length > 0) {
+  if (errors && errors.length > 0) {
     errors.forEach((errorEvent, index) => {
       let url =
         "https://monitoring.getelevar.com/track.gif?ctid=" +
