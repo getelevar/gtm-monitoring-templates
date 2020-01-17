@@ -136,6 +136,13 @@ ___TEMPLATE_PARAMETERS___
         "type": "TEXT"
       }
     ]
+  },
+  {
+    "type": "TEXT",
+    "name": "debugMode",
+    "simpleValueType": true,
+    "defaultValue": "{{Debug Mode}}",
+    "displayName": "Debug Mode Variable"
   }
 ]
 
@@ -313,36 +320,39 @@ const getDataLayerValue = key => {
 
 const validationTable = data.validationTable;
 const valueType = data.valueType;
+const debugMode = data.debugMode;
 const dataLayerValue = getDataLayerValue(data.dataLayerKey);
 
 // Don't validate if item is undefined
 // But add error if item is required
-if (typeof dataLayerValue === 'undefined') {
-  if (data.required === true) {
-    newError(dataLayerValue, 'required', 'true');
-  }
-} else {
-  switch (valueType) {
-    case "value":
-        validateValue(dataLayerValue, validationTable);
-      break;
+if (!debugMode) {
+  if (typeof dataLayerValue === 'undefined') {
+    if (data.required === true) {
+      newError(dataLayerValue, 'required', 'true');
+    }
+  } else {
+    switch (valueType) {
+      case "value":
+          validateValue(dataLayerValue, validationTable);
+        break;
 
-    case 'object':
-      if (getType(dataLayerValue) !== 'object') {
-        newError(dataLayerValue, 'typeOf', 'object');
-      }
-      validateObject(dataLayerValue, validationTable);
-      break;
+      case 'object':
+        if (getType(dataLayerValue) !== 'object') {
+          newError(dataLayerValue, 'typeOf', 'object');
+        }
+        validateObject(dataLayerValue, validationTable);
+        break;
 
-    case 'array': 
-      if (getType(dataLayerValue) !== 'array') {
-        newError(dataLayerValue, 'typeOf', 'array');
-      }
-      validateArray(dataLayerValue, validationTable);
-      break;
+      case 'array': 
+        if (getType(dataLayerValue) !== 'array') {
+          newError(dataLayerValue, 'typeOf', 'array');
+        }
+        validateArray(dataLayerValue, validationTable);
+        break;
 
-    default:
-      break;
+      default:
+        break;
+    }
   }
 }
 

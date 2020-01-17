@@ -55,6 +55,13 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ]
+  },
+  {
+    "type": "TEXT",
+    "name": "debugMode",
+    "displayName": "Debug Mode Variable",
+    "simpleValueType": true,
+    "defaultValue": "{{Debug Mode}}"
   }
 ]
 
@@ -82,31 +89,33 @@ const getEventName = (eventId, dataLayer) => {
   }, false);
 };
 
-// Fires after all tags for the trigger have completed
-addEventCallback(function(containerId, eventData) {
-  const DATA_LAYER = copyFromWindow(data.dataLayerName ? data.dataLayerName : "dataLayer");
-  const errors = copyFromWindow(VALIDATION_ERRORS);
+if (!data.debugMode) {
+  // Fires after all tags for the trigger have completed
+  addEventCallback(function(containerId, eventData) {
+    const DATA_LAYER = copyFromWindow(data.dataLayerName ? data.dataLayerName : "dataLayer");
+    const errors = copyFromWindow(VALIDATION_ERRORS);
 
-  // This removes the validation errors from window after they have been sent
-  setInWindow(VALIDATION_ERRORS, [], true);
+    // This removes the validation errors from window after they have been sent
+    setInWindow(VALIDATION_ERRORS, [], true);
 
-  // Send Pixel if there are errors
-  if (errors && errors.length > 0) {
-    errors.forEach((errorEvent, index) => {      
-      let url =
-        "https://monitoring.getelevar.com/track.gif?ctid=" +
-        containerId +
-        "&idx=" +
-        index +
-        "&event_name=" +
-        getEventName(errorEvent.eventId, DATA_LAYER) +
-        "&error=" +
-        errorEvent.error.message;
+    // Send Pixel if there are errors
+    if (errors && errors.length > 0) {
+      errors.forEach((errorEvent, index) => {      
+        let url =
+          "https://monitoring.getelevar.com/track.gif?ctid=" +
+          containerId +
+          "&idx=" +
+          index +
+          "&event_name=" +
+          getEventName(errorEvent.eventId, DATA_LAYER) +
+          "&error=" +
+          errorEvent.error.message;
 
-      sendPixel(url);
-    });
-  }
-});
+        sendPixel(url);
+      });
+    }
+  });
+}
 
 data.gtmOnSuccess();
 
