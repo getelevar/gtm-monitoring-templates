@@ -1,6 +1,9 @@
-[submodule "ckanext-report"]
+[submodule "elevar-gtm-monitoring-template"]
 	path = elevar-gtm-monitoring-template
 	url = https://github.com/getelevar/elevar-gtm-monitoring-template.git
 [submodule "elevar-gtm-validation-template"]
 	path = elevar-gtm-validation-template
 	url = https://github.com/getelevar/elevar-gtm-validation-template.git
+[submodule "gtm-template-facebook-pixel"]
+	path = gtm-template-facebook-pixel
+	url = https://github.com/getelevar/gtm-template-facebook-pixel
