@@ -1,9 +1,9 @@
-[submodule "elevar-gtm-monitoring-template"]
-	path = elevar-gtm-monitoring-template
-	url = https://github.com/getelevar/elevar-gtm-monitoring-template.git
-[submodule "elevar-gtm-validation-template"]
-	path = elevar-gtm-validation-template
-	url = https://github.com/getelevar/elevar-gtm-validation-template.git
-[submodule "gtm-template-facebook-pixel"]
-	path = gtm-template-facebook-pixel
-	url = https://github.com/getelevar/gtm-template-facebook-pixel
+[submodule "gtm-monitoring-core"]
+	path = gtm-monitoring-core
+	url = https://github.com/getelevar/gtm-monitoring-core.git
+[submodule "gtm-monitoring-variables"]
+	path = gtm-monitoring-variables
+	url = https://github.com/getelevar/gtm-monitoring-variables.git
+[submodule "gtm-monitoring-facebook-pixel"]
+	path = gtm-monitoring-facebook-pixel
+	url = https://github.com/getelevar/gtm-monitoring-facebook-pixel
