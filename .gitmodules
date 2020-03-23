@@ -7,3 +7,6 @@
 [submodule "gtm-monitoring-facebook-pixel"]
 	path = gtm-monitoring-facebook-pixel
 	url = https://github.com/getelevar/gtm-monitoring-facebook-pixel
+[submodule "gtm-monitoring-snapchat-pixel"]
+	path = gtm-monitoring-snapchat-pixel
+	url = https://github.com/getelevar/gtm-monitoring-snapchat-pixel.git
