@@ -10,3 +10,6 @@
 [submodule "gtm-monitoring-snapchat-pixel"]
 	path = gtm-monitoring-snapchat-pixel
 	url = https://github.com/getelevar/gtm-monitoring-snapchat-pixel.git
+[submodule "gtm-monitoring-klaviyo"]
+	path = gtm-monitoring-klaviyo
+	url = https://github.com/getelevar/gtm-monitoring-klaviyo.git
