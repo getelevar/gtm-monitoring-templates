@@ -13,3 +13,6 @@
 [submodule "gtm-monitoring-klaviyo"]
 	path = templates/gtm-monitoring-klaviyo
 	url = https://github.com/getelevar/gtm-monitoring-klaviyo.git
+[submodule "templates/gtm-monitoring-criteo"]
+	path = templates/gtm-monitoring-criteo
+	url = https://github.com/getelevar/gtm-monitoring-criteo.git
