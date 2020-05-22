@@ -4,12 +4,6 @@
 [submodule "gtm-monitoring-variables"]
 	path = templates/gtm-monitoring-variables
 	url = https://github.com/getelevar/gtm-monitoring-variables.git
-[submodule "gtm-monitoring-facebook-pixel"]
-	path = templates/gtm-monitoring-facebook-pixel
-	url = https://github.com/getelevar/gtm-monitoring-facebook-pixel
-[submodule "gtm-monitoring-snapchat-pixel"]
-	path = templates/gtm-monitoring-snapchat-pixel
-	url = https://github.com/getelevar/gtm-monitoring-snapchat-pixel.git
-[submodule "gtm-monitoring-klaviyo"]
-	path = templates/gtm-monitoring-klaviyo
-	url = https://github.com/getelevar/gtm-monitoring-klaviyo.git
+[submodule "templates/gtm-monitoring-tag-info"]
+	path = templates/gtm-monitoring-tag-info
+	url = https://github.com/getelevar/gtm-monitoring-tag-info
