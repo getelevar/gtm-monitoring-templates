@@ -1,0 +1,11 @@
+{
+  "name": "elevar-monitoring-templates",
+  "repository": "https://github.com/getelevar/gtm-monitoring-templates.git",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
