@@ -1,4 +1,4 @@
-const wildCardKeys = ["ecommerce.*"];
+const wildCardKeys = ["ecommerce.*", "user_properties.*"];
 const normalKeys = [
   "VariantPrice",
   "VisitorType",
@@ -28,6 +28,7 @@ const normalKeys = [
   "CustomerCountryCode",
   "CustomerProvince",
   "CustomerOrdersCount",
+  "cart_total",
 ];
 
 const allKeys = [...wildCardKeys, ...normalKeys];
