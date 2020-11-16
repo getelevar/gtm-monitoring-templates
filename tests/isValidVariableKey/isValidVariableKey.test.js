@@ -4,23 +4,25 @@ const { allKeys } = require("./currentKeys");
 describe("Valid GTM key", () => {
   test("Matches different basic keys", () => {
     allKeys.map((key) => {
-      return expect(isValidVariableKey(key)).toBe(true);
+      expect(isValidVariableKey(key)).toBe(true);
     });
   });
 
   test("Doesn't match unsupported key", () => {
-    return expect(isValidVariableKey("unsupported")).toBe(false);
+    expect(isValidVariableKey("unsupported")).toBe(false);
   });
 
   test("Doesn't match keys with different end", () => {
-    return expect(isValidVariableKey("ecommerceenddifferent")).toBe(false);
+    expect(isValidVariableKey("ecommerceenddifferent")).toBe(false);
   });
 
   test("Matches after dot in wildcard keys", () => {
-    return expect(isValidVariableKey("ecommerce.anything")).toBe(true);
+    expect(isValidVariableKey("ecommerce.anything")).toBe(true);
+    expect(isValidVariableKey("user_properties.anything")).toBe(true);
   });
+  
 
   test("Doesn't match after dot in non wildcards", () => {
-    return expect(isValidVariableKey("VariantPrice.subitem")).toBe(false);
+    expect(isValidVariableKey("VariantPrice.subitem")).toBe(false);
   });
 });
