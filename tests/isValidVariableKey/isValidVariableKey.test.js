@@ -25,4 +25,8 @@ describe("Valid GTM key", () => {
   test("Doesn't match after dot in non wildcards", () => {
     expect(isValidVariableKey("VariantPrice.subitem")).toBe(false);
   });
+  
+  test("Matches event_id key", () => {
+    expect(isValidVariableKey("event_id")).toBe(true);
+  });
 });

@@ -29,6 +29,7 @@ const normalKeys = [
   "CustomerProvince",
   "CustomerOrdersCount",
   "cart_total",
+  "event_id",
 ];
 
 const allKeys = [...wildCardKeys, ...normalKeys];
